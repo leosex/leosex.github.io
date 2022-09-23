@@ -6,7 +6,7 @@
   <link href="https://www.zhaoyantao.top/atom.xml" rel="self"/>
   
   <link href="https://www.zhaoyantao.top/"/>
-  <updated>2022-09-16T07:30:26.598Z</updated>
+  <updated>2022-09-23T03:26:19.509Z</updated>
   <id>https://www.zhaoyantao.top/</id>
   
   <author>
@@ -15,6 +15,55 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>c++实现爬虫</title>
+    <link href="https://www.zhaoyantao.top/2022/09/22/C++%E5%AE%9E%E7%8E%B0%E7%88%AC%E8%99%AB/"/>
+    <id>https://www.zhaoyantao.top/2022/09/22/C++%E5%AE%9E%E7%8E%B0%E7%88%AC%E8%99%AB/</id>
+    <published>2022-09-22T04:32:25.000Z</published>
+    <updated>2022-09-23T03:26:19.509Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="爬虫实现三部曲"><a href="#爬虫实现三部曲" class="headerlink" title="爬虫实现三部曲"></a>爬虫实现三部曲</h3><h4 id="获取爬取页面的-html-字符串"><a href="#获取爬取页面的-html-字符串" class="headerlink" title="获取爬取页面的 html 字符串"></a>获取爬取页面的 html 字符串</h4><p>这一步主要是通过 http 的 get 方法获取到页面的数据，有时候需要 https，这时就要使用 ssl 的库</p><p>我使用了一个开源的 http 库: <a href="https://github.com/yhirose/cpp-httplib">cpp-httplib</a></p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 如果https 要加入下面这个宏</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CPPHTTPLIB_OPENSSL_SUPPORT</span></span><br><span class="line"></span><br><span class="line">  <span class="function">httplib::SSLClient <span class="title">cli</span><span class="params">(<span class="string">&quot;www.xxx.com&quot;</span>)</span></span>;</span><br><span class="line">  <span class="keyword">auto</span> res = cli.<span class="built_in">Get</span>(<span class="string">&quot;/kx&quot;</span>);</span><br><span class="line">  <span class="keyword">if</span> (!res) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (res-&gt;status == <span class="number">200</span>) &#123;</span><br><span class="line">      std::string page = res-&gt;body;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="解析-html-字符串获取想要的节点数据"><a href="#解析-html-字符串获取想要的节点数据" class="headerlink" title="解析 html 字符串获取想要的节点数据"></a>解析 html 字符串获取想要的节点数据</h4><p>我使用了一个开源的 html 解析库: <a href="https://github.com/lazytiger/gumbo-query">gumbo-query</a></p><p>这个库依赖: <a href="https://github.com/google/gumbo-parser.git">gumbo-parser</a></p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">NewsData</span> &#123;</span><br><span class="line">    <span class="built_in">NewsData</span>() &#123;</span><br><span class="line">        title    = <span class="string">&quot;&quot;</span>;</span><br><span class="line">        time     = <span class="string">&quot;&quot;</span>;</span><br><span class="line">        complete = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    std::string title;</span><br><span class="line">    std::string time;</span><br><span class="line">    <span class="type">bool</span> complete;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">std::string page; <span class="comment">// 获取到的页面的数据</span></span><br><span class="line">CDocument doc;</span><br><span class="line">doc.<span class="built_in">parse</span>(page.<span class="built_in">c_str</span>());</span><br><span class="line"></span><br><span class="line">CSelection c = doc.<span class="built_in">find</span>(<span class="string">&quot;#newsUl li.body_zb_li&quot;</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; c.<span class="built_in">nodeNum</span>() &amp;&amp; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">  CNode node = c.<span class="built_in">nodeAt</span>(i);</span><br><span class="line">  CNode timeNode, titleNode;</span><br><span class="line">  NewsData newsData;</span><br><span class="line">  &#123;</span><br><span class="line">    CSelection cs = node.<span class="built_in">find</span>(<span class="string">&quot;.zb_time&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (cs.<span class="built_in">nodeNum</span>() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    timeNode      = cs.<span class="built_in">nodeAt</span>(<span class="number">0</span>);</span><br><span class="line">    newsData.time = timeNode.<span class="built_in">text</span>();</span><br><span class="line">  &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  &#123;</span><br><span class="line">    CSelection cs = node.<span class="built_in">find</span>(<span class="string">&quot;.zb_word a span&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (cs.<span class="built_in">nodeNum</span>() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      titleNode      = cs.<span class="built_in">nodeAt</span>(<span class="number">0</span>);</span><br><span class="line">      newsData.title = titleNode.<span class="built_in">text</span>();</span><br><span class="line">      <span class="keyword">if</span> (newsData.title[<span class="number">0</span>] == <span class="string">&#x27;\n&#x27;</span>) &#123;</span><br><span class="line">      newsData.title.<span class="built_in">erase</span>(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (!newsData.time.<span class="built_in">empty</span>() &amp;&amp; !newsData.title.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">  newsData.complete = <span class="literal">true</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    Log::<span class="built_in">info</span>(<span class="string">&quot;[null][%s]:[%s]&quot;</span>, newsData.time.<span class="built_in">c_str</span>(),</span><br><span class="line">    newsData.title.<span class="built_in">c_str</span>());</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (newsData.complete) &#123;</span><br><span class="line">    Log::<span class="built_in">info</span>(<span class="string">&quot;[%s]:[%s]&quot;</span>, newsData.time.<span class="built_in">c_str</span>(),</span><br><span class="line">    newsData.title.<span class="built_in">c_str</span>());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="将获取到的数据存储到存储介质"><a href="#将获取到的数据存储到存储介质" class="headerlink" title="将获取到的数据存储到存储介质"></a>将获取到的数据存储到存储介质</h4><p>最后将数据存储起来，提供接口到前端</p><p><a href="git@gitee.com:ithanqiang/HTest.git">代码位置</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;爬虫实现三部曲&quot;&gt;&lt;a href=&quot;#爬虫实现三部曲&quot; class=&quot;headerlink&quot; title=&quot;爬虫实现三部曲&quot;&gt;&lt;/a&gt;爬虫实现三部曲&lt;/h3&gt;&lt;h4 id=&quot;获取爬取页面的-html-字符串&quot;&gt;&lt;a href=&quot;#获取爬取页面的-html-字符串&quot;</summary>
+      
+    
+    
+    
+    <category term="网络编程" scheme="https://www.zhaoyantao.top/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"/>
+    
+    
+    <category term="爬虫" scheme="https://www.zhaoyantao.top/tags/%E7%88%AC%E8%99%AB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Epoll的用户</title>
+    <link href="https://www.zhaoyantao.top/2022/09/11/Epoll%E7%9A%84%E7%94%A8%E6%B3%95/"/>
+    <id>https://www.zhaoyantao.top/2022/09/11/Epoll%E7%9A%84%E7%94%A8%E6%B3%95/</id>
+    <published>2022-09-11T04:52:25.000Z</published>
+    <updated>2022-09-23T03:26:25.065Z</updated>
+    
+    <content type="html"><![CDATA[<p><code>epoll_event</code>结构体：</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">union</span> <span class="title class_">epoll_data</span> &#123;</span><br><span class="line">  <span class="type">void</span> *ptr;</span><br><span class="line">  <span class="type">int</span> fd;</span><br><span class="line">  <span class="type">uint32_t</span> u32;</span><br><span class="line">  <span class="type">uint64_t</span> u64;</span><br><span class="line">&#125; <span class="type">epoll_data_t</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">epoll_event</span> &#123;</span><br><span class="line">  <span class="type">uint32_t</span> events;<span class="comment">/* Epoll events */</span></span><br><span class="line">  <span class="type">epoll_data_t</span> data;<span class="comment">/* User data variable */</span></span><br><span class="line">&#125; __EPOLL_PACKED;</span><br></pre></td></tr></table></figure><h4 id="未完待续…"><a href="#未完待续…" class="headerlink" title="未完待续…"></a>未完待续…</h4>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;code&gt;epoll_event&lt;/code&gt;结构体：&lt;/p&gt;
+&lt;figure class=&quot;highlight cpp&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span cl</summary>
+      
+    
+    
+    
+    <category term="网络编程" scheme="https://www.zhaoyantao.top/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"/>
+    
+    
+    <category term="c++" scheme="https://www.zhaoyantao.top/tags/c/"/>
+    
+  </entry>
   
   <entry>
     <title>windows精品软件推荐</title>

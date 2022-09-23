@@ -20,22 +20,22 @@
   <meta http-equiv="window-target" content="_top" />
    
   <title>
-    c++代码覆盖率测试 | 一粒微沙,个人技术学习
+    c++实现爬虫 | 一粒微沙,个人技术学习
   </title>
-  <meta name="description" content="技术栈阐述 系统（我采用的是 macos 线上使用 centos7） cmake 版本 3.2 以上，既然人家一直更新就用最新的稳定版 gcov 获取文本形式的覆盖率数据 lcov 获取 html 形式的覆盖率数据  cmake 来配置代码覆盖率测试 Cmakelist.txt1234567891011121314151617181920212223242526#基础环境安装yum -y inst">
+  <meta name="description" content="爬虫实现三部曲获取爬取页面的 html 字符串这一步主要是通过 http 的 get 方法获取到页面的数据，有时候需要 https，这时就要使用 ssl 的库 我使用了一个开源的 http 库: cpp-httplib 12345678910111213&#x2F;&#x2F; 如果https 要加入下面这个宏#define CPPHTTPLIB_OPENSSL_SUPPORT  httplib::SSLClient">
 <meta property="og:type" content="article">
-<meta property="og:title" content="c++代码覆盖率测试">
-<meta property="og:url" content="https://www.zhaoyantao.top/2019/07/22/c++%E4%BB%A3%E7%A0%81%E8%A6%86%E7%9B%96%E7%8E%87%E6%B5%8B%E8%AF%95/index.html">
+<meta property="og:title" content="c++实现爬虫">
+<meta property="og:url" content="https://www.zhaoyantao.top/2022/09/22/C++%E5%AE%9E%E7%8E%B0%E7%88%AC%E8%99%AB/index.html">
 <meta property="og:site_name" content="一粒微沙">
-<meta property="og:description" content="技术栈阐述 系统（我采用的是 macos 线上使用 centos7） cmake 版本 3.2 以上，既然人家一直更新就用最新的稳定版 gcov 获取文本形式的覆盖率数据 lcov 获取 html 形式的覆盖率数据  cmake 来配置代码覆盖率测试 Cmakelist.txt1234567891011121314151617181920212223242526#基础环境安装yum -y inst">
+<meta property="og:description" content="爬虫实现三部曲获取爬取页面的 html 字符串这一步主要是通过 http 的 get 方法获取到页面的数据，有时候需要 https，这时就要使用 ssl 的库 我使用了一个开源的 http 库: cpp-httplib 12345678910111213&#x2F;&#x2F; 如果https 要加入下面这个宏#define CPPHTTPLIB_OPENSSL_SUPPORT  httplib::SSLClient">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2019-07-22T04:52:25.000Z">
-<meta property="article:modified_time" content="2022-09-17T03:44:58.500Z">
+<meta property="article:published_time" content="2022-09-22T04:32:25.000Z">
+<meta property="article:modified_time" content="2022-09-23T03:26:19.509Z">
 <meta property="article:author" content="个人技术学习">
-<meta property="article:tag" content="c++">
+<meta property="article:tag" content="爬虫">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://www.zhaoyantao.top/2019/07/22/c++%E4%BB%A3%E7%A0%81%E8%A6%86%E7%9B%96%E7%8E%87%E6%B5%8B%E8%AF%95/index.html" />
+  <link rel="canonical" href="https://www.zhaoyantao.top/2022/09/22/C++%E5%AE%9E%E7%8E%B0%E7%88%AC%E8%99%AB/index.html" />
   
   <link
     rel="alternate"
@@ -306,14 +306,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="post-c++代码覆盖率测试" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-C++实现爬虫" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      c++代码覆盖率测试
+      c++实现爬虫
     </h1>
   
 
@@ -321,40 +321,41 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2019/07/22/c++%E4%BB%A3%E7%A0%81%E8%A6%86%E7%9B%96%E7%8E%87%E6%B5%8B%E8%AF%95/" class="article-date">
-	  <time datetime="2019-07-22T04:52:25.000Z" itemprop="datePublished">2019-07-22</time>
+	<a href="/2022/09/22/C++%E5%AE%9E%E7%8E%B0%E7%88%AC%E8%99%AB/" class="article-date">
+	  <time datetime="2022-09-22T04:32:25.000Z" itemprop="datePublished">2022-09-22</time>
 	</a>
 </span>
         
   <span class="article-category">
     <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/%E6%B5%8B%E8%AF%95/">测试</a>
+    <a class="article-category-link" href="/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">网络编程</a>
   </span>
 
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link-link" href="/tags/c/" rel="tag">c++</a>
+	<a class="article-tag-link-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a>
   </span>
 
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/07/22/c++%E4%BB%A3%E7%A0%81%E8%A6%86%E7%9B%96%E7%8E%87%E6%B5%8B%E8%AF%95/#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/09/22/C++%E5%AE%9E%E7%8E%B0%E7%88%AC%E8%99%AB/#comments" class="article-comment-link">评论</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h3 id="技术栈阐述"><a href="#技术栈阐述" class="headerlink" title="技术栈阐述"></a>技术栈阐述</h3><ol>
-<li>系统（我采用的是 macos 线上使用 centos7）</li>
-<li>cmake 版本 3.2 以上，既然人家一直更新就用最新的稳定版</li>
-<li>gcov 获取文本形式的覆盖率数据</li>
-<li>lcov 获取 html 形式的覆盖率数据</li>
-</ol>
-<h3 id="cmake-来配置代码覆盖率测试-Cmakelist-txt"><a href="#cmake-来配置代码覆盖率测试-Cmakelist-txt" class="headerlink" title="cmake 来配置代码覆盖率测试 Cmakelist.txt"></a>cmake 来配置代码覆盖率测试 Cmakelist.txt</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#基础环境安装</span></span><br><span class="line">yum -y install perl-Digest-MD5</span><br><span class="line"><span class="comment">#lcov-1.14安装</span></span><br><span class="line">tar -xvf lcov-1.14.tar</span><br><span class="line"><span class="built_in">cd</span> lcov-1.14</span><br><span class="line">sudo make install</span><br><span class="line"><span class="comment">#设置cmake的编译类型 分为debug/release  debug:我们来生成代码覆盖率测试报告</span></span><br><span class="line"><span class="comment">#设置C++编译选项</span></span><br><span class="line">SET(CMAKE_CXX_FLAGS_DEBUG <span class="string">&quot;<span class="variable">$ENV</span>&#123;CXXFLAGS&#125; -std=c++11 -O0 -Wall -lpthread  --coverage -ggdb&quot;</span>)</span><br><span class="line">SET(CMAKE_CXX_FLAGS_RELEASE <span class="string">&quot;<span class="variable">$ENV</span>&#123;CXXFLAGS&#125; -std=c++11 -lpthread -O3 -Wall&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#代码编译</span></span><br><span class="line"><span class="built_in">mkdir</span> build</span><br><span class="line"><span class="built_in">cd</span> build &amp;&amp; cmake  -DCMAKE_BUILD_TYPE=Debug ..</span><br><span class="line">make</span><br><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line"><span class="comment"># 我的可执行文件在bin下 test 编译生成 .gcno 文件 运行生成 .gcda</span></span><br><span class="line">./bin/test</span><br><span class="line"><span class="comment"># 运行后会在 build生成 .gcda文件   build是我的项目构建和编译目录</span></span><br><span class="line"><span class="comment"># 运行完成我们开始生成html的代码覆盖率报告  我的源码在src下</span></span><br><span class="line">lcov --rc lcov_branch_coverage=1 -c -d build -o coverage.info_o</span><br><span class="line">lcov --rc lcov_branch_coverage=1  -e coverage.info_o <span class="string">&quot;*src*&quot;</span> -o coverage.info</span><br><span class="line">genhtml --rc genhtml_branch_coverage=1 coverage.info -o coverage_report</span><br><span class="line"><span class="built_in">rm</span> -rf coverage.info_o</span><br><span class="line"><span class="built_in">rm</span> -rf coverage.info</span><br><span class="line"><span class="comment"># 删除中间文件 coverage.info_o  coverage.info 直接看 coverage_report 文件下的index.html 用谷歌浏览器打开</span></span><br></pre></td></tr></table></figure>
+        <h3 id="爬虫实现三部曲"><a href="#爬虫实现三部曲" class="headerlink" title="爬虫实现三部曲"></a>爬虫实现三部曲</h3><h4 id="获取爬取页面的-html-字符串"><a href="#获取爬取页面的-html-字符串" class="headerlink" title="获取爬取页面的 html 字符串"></a>获取爬取页面的 html 字符串</h4><p>这一步主要是通过 http 的 get 方法获取到页面的数据，有时候需要 https，这时就要使用 ssl 的库</p>
+<p>我使用了一个开源的 http 库: <a target="_blank" rel="noopener" href="https://github.com/yhirose/cpp-httplib">cpp-httplib</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 如果https 要加入下面这个宏</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CPPHTTPLIB_OPENSSL_SUPPORT</span></span><br><span class="line"></span><br><span class="line">  <span class="function">httplib::SSLClient <span class="title">cli</span><span class="params">(<span class="string">&quot;www.xxx.com&quot;</span>)</span></span>;</span><br><span class="line">  <span class="keyword">auto</span> res = cli.<span class="built_in">Get</span>(<span class="string">&quot;/kx&quot;</span>);</span><br><span class="line">  <span class="keyword">if</span> (!res) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (res-&gt;status == <span class="number">200</span>) &#123;</span><br><span class="line">      	std::string page = res-&gt;body;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h3><p>最简单的 cmake 使用代码覆盖率测试已经加上，后期我加上谷歌的单元测试(gtest), 可以协助做代码覆盖率测试，我会把代码提交到 github，大家后期关注一下啊</p>
+<h4 id="解析-html-字符串获取想要的节点数据"><a href="#解析-html-字符串获取想要的节点数据" class="headerlink" title="解析 html 字符串获取想要的节点数据"></a>解析 html 字符串获取想要的节点数据</h4><p>我使用了一个开源的 html 解析库: <a target="_blank" rel="noopener" href="https://github.com/lazytiger/gumbo-query">gumbo-query</a></p>
+<p>这个库依赖: <a target="_blank" rel="noopener" href="https://github.com/google/gumbo-parser.git">gumbo-parser</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">NewsData</span> &#123;</span><br><span class="line">    <span class="built_in">NewsData</span>() &#123;</span><br><span class="line">        title    = <span class="string">&quot;&quot;</span>;</span><br><span class="line">        time     = <span class="string">&quot;&quot;</span>;</span><br><span class="line">        complete = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    std::string title;</span><br><span class="line">    std::string time;</span><br><span class="line">    <span class="type">bool</span> complete;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">std::string page; <span class="comment">// 获取到的页面的数据</span></span><br><span class="line">CDocument doc;</span><br><span class="line">doc.<span class="built_in">parse</span>(page.<span class="built_in">c_str</span>());</span><br><span class="line"></span><br><span class="line">CSelection c = doc.<span class="built_in">find</span>(<span class="string">&quot;#newsUl li.body_zb_li&quot;</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; c.<span class="built_in">nodeNum</span>() &amp;&amp; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">  CNode node = c.<span class="built_in">nodeAt</span>(i);</span><br><span class="line">  CNode timeNode, titleNode;</span><br><span class="line">  NewsData newsData;</span><br><span class="line">  &#123;</span><br><span class="line">    CSelection cs = node.<span class="built_in">find</span>(<span class="string">&quot;.zb_time&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (cs.<span class="built_in">nodeNum</span>() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    timeNode      = cs.<span class="built_in">nodeAt</span>(<span class="number">0</span>);</span><br><span class="line">    newsData.time = timeNode.<span class="built_in">text</span>();</span><br><span class="line">  	&#125;</span><br><span class="line">  &#125;</span><br><span class="line">  &#123;</span><br><span class="line">    CSelection cs = node.<span class="built_in">find</span>(<span class="string">&quot;.zb_word a span&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (cs.<span class="built_in">nodeNum</span>() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      titleNode      = cs.<span class="built_in">nodeAt</span>(<span class="number">0</span>);</span><br><span class="line">      newsData.title = titleNode.<span class="built_in">text</span>();</span><br><span class="line">      <span class="keyword">if</span> (newsData.title[<span class="number">0</span>] == <span class="string">&#x27;\n&#x27;</span>) &#123;</span><br><span class="line">      newsData.title.<span class="built_in">erase</span>(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (!newsData.time.<span class="built_in">empty</span>() &amp;&amp; !newsData.title.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">  	newsData.complete = <span class="literal">true</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    Log::<span class="built_in">info</span>(<span class="string">&quot;[null][%s]:[%s]&quot;</span>, newsData.time.<span class="built_in">c_str</span>(),</span><br><span class="line">    newsData.title.<span class="built_in">c_str</span>());</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (newsData.complete) &#123;</span><br><span class="line">    Log::<span class="built_in">info</span>(<span class="string">&quot;[%s]:[%s]&quot;</span>, newsData.time.<span class="built_in">c_str</span>(),</span><br><span class="line">    newsData.title.<span class="built_in">c_str</span>());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="将获取到的数据存储到存储介质"><a href="#将获取到的数据存储到存储介质" class="headerlink" title="将获取到的数据存储到存储介质"></a>将获取到的数据存储到存储介质</h4><p>最后将数据存储起来，提供接口到前端</p>
+<p><a href="git@gitee.com:ithanqiang/HTest.git">代码位置</a></p>
 
       
     </div>
@@ -364,7 +365,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://www.zhaoyantao.top/2019/07/22/c++%E4%BB%A3%E7%A0%81%E8%A6%86%E7%9B%96%E7%8E%87%E6%B5%8B%E8%AF%95/" title="c++代码覆盖率测试" target="_blank" rel="external">https://www.zhaoyantao.top/2019/07/22/c++代码覆盖率测试/</a>
+      <a href="https://www.zhaoyantao.top/2022/09/22/C++%E5%AE%9E%E7%8E%B0%E7%88%AC%E8%99%AB/" title="c++实现爬虫" target="_blank" rel="external">https://www.zhaoyantao.top/2022/09/22/C++实现爬虫/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -410,13 +411,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2019/08/28/%E4%B8%80%E4%B8%AAC++%E9%82%AE%E4%BB%B6%E5%8F%91%E9%80%81%E5%BA%93jwsmtp/" title="一个C++邮件发送库jwsmtp"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2019/07/15/Zookeeper%E5%AE%89%E8%A3%85%E5%92%8C%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C/" title="Zookeeper安装和自定义服务注册"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2022/09/11/Epoll%E7%9A%84%E7%94%A8%E6%B3%95/" title="Epoll的用户"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
